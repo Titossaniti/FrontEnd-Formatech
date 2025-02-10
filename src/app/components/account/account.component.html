@@ -1,11 +1,11 @@
 <app-navbar></app-navbar>
-<div class="container">
-  <h1>Mon Compte</h1>
-  <ul>
-    <li>Prénom : {{ userInfo.firstname }}</li>
-    <li>Nom : {{ userInfo.lastname }}</li>
-    <li>Email : {{ userInfo.email }}</li>
-    <li>Téléphone : {{ userInfo.phone }}</li>
-    <li>Date de naissance : {{ userInfo.birthdate | date }}</li>
-  </ul>
+<div class="container bg-">
+  <h1>Mes informations</h1>
+  <div>
+    <p>Prénom : {{ userInfo.firstname }}</p>
+    <p>Nom : {{ userInfo.lastname }}</p>
+    <p>Email : {{ userInfo.email }}</p>
+    <p>Téléphone : {{ userInfo.phone }}</p>
+    <p>Date de naissance : {{ userInfo.birthdate | date }}</p>
+  </div>
 </div>
