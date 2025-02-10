@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './auth/login/login.component';
+import {HomeComponent} from './components/home/home.component';
+import {AuthGuard} from './auth/auth.guard';
+import {AccountComponent} from './components/account/account.component';
 
 export const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  // { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  // Lazy loading pour Login car si un user est déjà connecté, il n'a pas besoin de charger le module.
+  { path: 'login', loadComponent: () => import('./auth/login/login.component').then(m => m.LoginComponent) },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
+
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: '/login' }
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

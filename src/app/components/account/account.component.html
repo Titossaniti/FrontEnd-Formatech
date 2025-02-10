@@ -1,0 +1,11 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <h1>Mon Compte</h1>
+  <ul>
+    <li>Prénom : {{ userInfo.firstname }}</li>
+    <li>Nom : {{ userInfo.lastname }}</li>
+    <li>Email : {{ userInfo.email }}</li>
+    <li>Téléphone : {{ userInfo.phone }}</li>
+    <li>Date de naissance : {{ userInfo.birthdate | date }}</li>
+  </ul>
+</div>
