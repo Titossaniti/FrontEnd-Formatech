@@ -1,192 +1,216 @@
-// Couleurs personnalisées
-$color-light-gray: #F7F7F7;
-$color-gray: #F0F0F0;
-$color-dark-gray: #D9D9D9;
-$color-deep-blue: #16006D;
-$color-primary: #603BFF;
-$color-secondary: #C2B6FE;
-$color-accent: #8976FF;
+//// Couleurs personnalisées
+//$color-light-gray: #F7F7F7;
+//$color-gray: #F0F0F0;
+//$color-dark-gray: #D9D9D9;
+//$color-deep-blue: #16006D;
+//$color-primary: #603BFF;
+//$color-secondary: #C2B6FE;
+//$color-accent: #8976FF;
+//
+//:root {
+//  --color-light-gray: #{$color-light-gray};
+//  --color-gray: #{$color-gray};
+//  --color-dark-gray: #{$color-dark-gray};
+//  --color-deep-blue: #{$color-deep-blue};
+//  --color-primary: #{$color-primary};
+//  --color-secondary: #{$color-secondary};
+//  --color-accent: #{$color-accent};
+//}
+//
+//.bg-light-gray { background-color: $color-light-gray !important; }
+//.bg-gray { background-color: $color-gray !important; }
+//.bg-dark-gray { background-color: $color-dark-gray !important; }
+//.bg-deep-blue { background-color: $color-deep-blue !important; }
+//.bg-primary { background-color: $color-primary !important; }
+//.bg-secondary { background-color: $color-secondary !important; }
+//.bg-accent { background-color: $color-accent !important; }
+//
+//.text-light-gray { color: $color-light-gray !important; }
+//.text-gray { color: $color-gray !important; }
+//.text-dark-gray { color: $color-dark-gray !important; }
+//.text-deep-blue { color: $color-deep-blue !important; }
+//.text-primary { color: $color-primary !important; }
+//.text-secondary { color: $color-secondary !important; }
+//.text-accent { color: $color-accent !important; }
+//
 
-:root {
-  --color-light-gray: #{$color-light-gray};
-  --color-gray: #{$color-gray};
-  --color-dark-gray: #{$color-dark-gray};
-  --color-deep-blue: #{$color-deep-blue};
-  --color-primary: #{$color-primary};
-  --color-secondary: #{$color-secondary};
-  --color-accent: #{$color-accent};
-}
+//
+//.hover-bg-light-gray:hover { background-color: adjust-color($color-light-gray, $lightness: -10%) !important; }
+//.hover-bg-gray:hover { background-color: adjust-color($color-gray, $lightness: -10%) !important; }
+//.hover-bg-dark-gray:hover { background-color: adjust-color($color-dark-gray, $lightness: -10%) !important; }
+//.hover-bg-deep-blue:hover { background-color: adjust-color($color-deep-blue, $lightness: -10%) !important; }
+//.hover-bg-primary:hover { background-color: adjust-color($color-primary, $lightness: -10%) !important; }
+//.hover-bg-secondary:hover { background-color: adjust-color($color-secondary, $lightness: -10%) !important; }
+//.hover-bg-accent:hover { background-color: adjust-color($color-accent, $lightness: -10%) !important; }
+//
+//.hover-text-light-gray:hover { color: adjust-color($color-light-gray, $lightness: -10%) !important; }
+//.hover-text-gray:hover { color: adjust-color($color-gray, $lightness: -10%) !important; }
+//.hover-text-dark-gray:hover { color: adjust-color($color-dark-gray, $lightness: -10%) !important; }
+//.hover-text-deep-blue:hover { color: adjust-color($color-deep-blue, $lightness: -10%) !important; }
+//.hover-text-primary:hover { color: adjust-color($color-primary, $lightness: -10%) !important; }
+//.hover-text-secondary:hover { color: adjust-color($color-secondary, $lightness: -10%) !important; }
+//.hover-text-accent:hover { color: adjust-color($color-accent, $lightness: -10%) !important; }
+//
+//.hover-border-light-gray:hover { border: 1px solid adjust-color($color-light-gray, $lightness: -10%) !important; }
+//.hover-border-gray:hover { border: 1px solid adjust-color($color-gray, $lightness: -10%) !important; }
+//.hover-border-dark-gray:hover { border: 1px solid adjust-color($color-dark-gray, $lightness: -10%) !important; }
+//.hover-border-deep-blue:hover { border: 1px solid adjust-color($color-deep-blue, $lightness: -10%) !important; }
+//.hover-border-primary:hover { border: 1px solid adjust-color($color-primary, $lightness: -10%) !important; }
+//.hover-border-secondary:hover { border: 1px solid adjust-color($color-secondary, $lightness: -10%) !important; }
+//.hover-border-accent:hover { border: 1px solid adjust-color($color-accent, $lightness: -10%) !important; }
+//
+/////////////////////////////////////////////////////////////////
+//$btn-padding-y: 0.375rem;
+//$btn-padding-x: 0.75rem;
+//$btn-font-family: inherit;
+//$btn-font-size: 1rem;
+//$btn-font-weight: 400;
+//$btn-line-height: 1.5;
+//$btn-color: #212529;
+//$btn-bg: transparent;
+//$btn-border-width: 1px;
+//$btn-border-color: transparent;
+//$btn-border-radius: 0.375rem;
+//$btn-hover-color: #212529;
+//$btn-hover-bg: #e9ecef;
+//$btn-hover-border-color: #e9ecef;
+//$btn-focus-shadow-rgb: 130, 138, 145;
+//$btn-disabled-opacity: 0.65;
+//$btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+//
+//// Classe .btn bootstrap
+//.btn {
+//  display: inline-block;
+//  font-weight: $btn-font-weight;
+//  color: $btn-color;
+//  text-align: center;
+//  vertical-align: middle;
+//  cursor: pointer;
+//  user-select: none;
+//  background-color: $btn-bg;
+//  border: $btn-border-width solid $btn-border-color;
+//  padding: $btn-padding-y $btn-padding-x;
+//  font-size: $btn-font-size;
+//  line-height: $btn-line-height;
+//  border-radius: $btn-border-radius;
+//  transition: $btn-transition;
+//
+//  &:hover {
+//    color: $btn-hover-color;
+//    background-color: $btn-hover-bg;
+//    border-color: $btn-hover-border-color;
+//    text-decoration: none;
+//  }
+//
+//  //&:focus {
+//  //  outline: 0;
+//  //  box-shadow: 0 0 0 0.25rem rgba($btn-focus-shadow-rgb, 0.5);
+//  //}
+//
+//  &:disabled,
+//  &.disabled {
+//    opacity: $btn-disabled-opacity;
+//    pointer-events: none;
+//  }
+//}
+//
+///////////////////////////////
+//.btn-light-gray {
+//  background-color: $color-light-gray;
+//  color: black;
+//  border: none;
+//  &:hover {
+//    background-color: adjust-color($color-light-gray, $lightness: -10%);
+//  }
+//}
+//.btn-gray {
+//  @extend .btn;
+//  background-color: $color-gray;
+//  color: black;
+//  border: none;
+//  &:hover {
+//    background-color: adjust-color($color-gray, $lightness: -10%);
+//  }
+//}
+//.btn-dark-gray {
+//  @extend .btn;
+//  background-color: $color-dark-gray;
+//  color: black;
+//  border: none;
+//  &:hover {
+//    background-color: adjust-color($color-dark-gray, $lightness: -10%);
+//  }
+//}
+//.btn-deep-blue {
+//  @extend .btn;
+//  background-color: $color-deep-blue;
+//  color: white;
+//  border: none;
+//  &:hover {
+//    background-color: adjust-color($color-deep-blue, $lightness: -10%);
+//  }
+//}
+//.btn-primary {
+//  @extend .btn;
+//  background-color: $color-primary;
+//  color: white;
+//  border: none;
+//  &:hover {
+//    background-color: adjust-color($color-primary, $lightness: -10%);
+//  }
+//}
+//.btn-secondary {
+//  @extend .btn;
+//  background-color: $color-secondary;
+//  color: white;
+//  border: none;
+//  &:hover {
+//    background-color: adjust-color($color-secondary, $lightness: -10%);
+//  }
+//}
+//.btn-accent {
+//  @extend .btn;
+//  background-color: $color-accent;
+//  color: white;
+//  border: none;
+//  &:hover {
+//    background-color: adjust-color($color-accent, $lightness: -10%);
+//  }
+//}
+//
+/////////////////////////////////////////////////////////////////
+//html, body {
+//  background-color: $color-gray;
+//  margin: 0;
+//  height: 100%;
+//}
 
-.bg-light-gray { background-color: $color-light-gray !important; }
-.bg-gray { background-color: $color-gray !important; }
-.bg-dark-gray { background-color: $color-dark-gray !important; }
-.bg-deep-blue { background-color: $color-deep-blue !important; }
-.bg-primary { background-color: $color-primary !important; }
-.bg-secondary { background-color: $color-secondary !important; }
-.bg-accent { background-color: $color-accent !important; }
+@import "bootstrap/scss/functions";
 
-.text-light-gray { color: $color-light-gray !important; }
-.text-gray { color: $color-gray !important; }
-.text-dark-gray { color: $color-dark-gray !important; }
-.text-deep-blue { color: $color-deep-blue !important; }
-.text-primary { color: $color-primary !important; }
-.text-secondary { color: $color-secondary !important; }
-.text-accent { color: $color-accent !important; }
+@import "scss/_variables";
 
-.border-light-gray { border: 1px solid $color-light-gray !important; }
-.border-gray { border: 1px solid $color-gray !important; }
-.border-dark-gray { border: 1px solid $color-dark-gray !important; }
-.border-deep-blue { border: 1px solid $color-deep-blue !important; }
-.border-primary { border: 1px solid $color-primary !important; }
-.border-secondary { border: 1px solid $color-secondary !important; }
-.border-accent { border: 2px solid $color-accent !important; }
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
 
-.hover-bg-light-gray:hover { background-color: adjust-color($color-light-gray, $lightness: -10%) !important; }
-.hover-bg-gray:hover { background-color: adjust-color($color-gray, $lightness: -10%) !important; }
-.hover-bg-dark-gray:hover { background-color: adjust-color($color-dark-gray, $lightness: -10%) !important; }
-.hover-bg-deep-blue:hover { background-color: adjust-color($color-deep-blue, $lightness: -10%) !important; }
-.hover-bg-primary:hover { background-color: adjust-color($color-primary, $lightness: -10%) !important; }
-.hover-bg-secondary:hover { background-color: adjust-color($color-secondary, $lightness: -10%) !important; }
-.hover-bg-accent:hover { background-color: adjust-color($color-accent, $lightness: -10%) !important; }
+$theme-colors: map-merge($theme-colors, (
+  "light-gray": $color-light-gray,
+  "gray": $color-gray,
+  "dark-gray": $color-dark-gray,
+  "deep-blue": $color-deep-blue,
+  "secondary": $color-secondary,
+  "accent": $color-accent
+));
 
-.hover-text-light-gray:hover { color: adjust-color($color-light-gray, $lightness: -10%) !important; }
-.hover-text-gray:hover { color: adjust-color($color-gray, $lightness: -10%) !important; }
-.hover-text-dark-gray:hover { color: adjust-color($color-dark-gray, $lightness: -10%) !important; }
-.hover-text-deep-blue:hover { color: adjust-color($color-deep-blue, $lightness: -10%) !important; }
-.hover-text-primary:hover { color: adjust-color($color-primary, $lightness: -10%) !important; }
-.hover-text-secondary:hover { color: adjust-color($color-secondary, $lightness: -10%) !important; }
-.hover-text-accent:hover { color: adjust-color($color-accent, $lightness: -10%) !important; }
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/buttons";
 
-.hover-border-light-gray:hover { border: 1px solid adjust-color($color-light-gray, $lightness: -10%) !important; }
-.hover-border-gray:hover { border: 1px solid adjust-color($color-gray, $lightness: -10%) !important; }
-.hover-border-dark-gray:hover { border: 1px solid adjust-color($color-dark-gray, $lightness: -10%) !important; }
-.hover-border-deep-blue:hover { border: 1px solid adjust-color($color-deep-blue, $lightness: -10%) !important; }
-.hover-border-primary:hover { border: 1px solid adjust-color($color-primary, $lightness: -10%) !important; }
-.hover-border-secondary:hover { border: 1px solid adjust-color($color-secondary, $lightness: -10%) !important; }
-.hover-border-accent:hover { border: 1px solid adjust-color($color-accent, $lightness: -10%) !important; }
+@import "scss/_custom";
 
-///////////////////////////////////////////////////////////////
-$btn-padding-y: 0.375rem;
-$btn-padding-x: 0.75rem;
-$btn-font-family: inherit;
-$btn-font-size: 1rem;
-$btn-font-weight: 400;
-$btn-line-height: 1.5;
-$btn-color: #212529;
-$btn-bg: transparent;
-$btn-border-width: 1px;
-$btn-border-color: transparent;
-$btn-border-radius: 0.375rem;
-$btn-hover-color: #212529;
-$btn-hover-bg: #e9ecef;
-$btn-hover-border-color: #e9ecef;
-$btn-focus-shadow-rgb: 130, 138, 145;
-$btn-disabled-opacity: 0.65;
-$btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-
-// Classe .btn bootstrap
-.btn {
-  display: inline-block;
-  font-weight: $btn-font-weight;
-  color: $btn-color;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  user-select: none;
-  background-color: $btn-bg;
-  border: $btn-border-width solid $btn-border-color;
-  padding: $btn-padding-y $btn-padding-x;
-  font-size: $btn-font-size;
-  line-height: $btn-line-height;
-  border-radius: $btn-border-radius;
-  transition: $btn-transition;
-
-  &:hover {
-    color: $btn-hover-color;
-    background-color: $btn-hover-bg;
-    border-color: $btn-hover-border-color;
-    text-decoration: none;
-  }
-
-  //&:focus {
-  //  outline: 0;
-  //  box-shadow: 0 0 0 0.25rem rgba($btn-focus-shadow-rgb, 0.5);
-  //}
-
-  &:disabled,
-  &.disabled {
-    opacity: $btn-disabled-opacity;
-    pointer-events: none;
-  }
-}
-
-/////////////////////////////
-.btn-light-gray {
-  background-color: $color-light-gray;
-  color: black;
-  border: none;
-  &:hover {
-    background-color: adjust-color($color-light-gray, $lightness: -10%);
-  }
-}
-.btn-gray {
-  @extend .btn;
-  background-color: $color-gray;
-  color: black;
-  border: none;
-  &:hover {
-    background-color: adjust-color($color-gray, $lightness: -10%);
-  }
-}
-.btn-dark-gray {
-  @extend .btn;
-  background-color: $color-dark-gray;
-  color: black;
-  border: none;
-  &:hover {
-    background-color: adjust-color($color-dark-gray, $lightness: -10%);
-  }
-}
-.btn-deep-blue {
-  @extend .btn;
-  background-color: $color-deep-blue;
-  color: white;
-  border: none;
-  &:hover {
-    background-color: adjust-color($color-deep-blue, $lightness: -10%);
-  }
-}
-.btn-primary {
-  @extend .btn;
-  background-color: $color-primary;
-  color: white;
-  border: none;
-  &:hover {
-    background-color: adjust-color($color-primary, $lightness: -10%);
-  }
-}
-.btn-secondary {
-  @extend .btn;
-  background-color: $color-secondary;
-  color: white;
-  border: none;
-  &:hover {
-    background-color: adjust-color($color-secondary, $lightness: -10%);
-  }
-}
-.btn-accent {
-  @extend .btn;
-  background-color: $color-accent;
-  color: white;
-  border: none;
-  &:hover {
-    background-color: adjust-color($color-accent, $lightness: -10%);
-  }
-}
-
-///////////////////////////////////////////////////////////////
+// Styles ajoutés
 html, body {
-  background-color: $color-gray;
-  margin: 0;
+  background-color: $gray-100;
   height: 100%;
 }

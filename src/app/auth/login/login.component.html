@@ -7,7 +7,7 @@
            width="500" priority>
     </div>
 
-    <div class="col-md-4 border-accent rounded-2 p-4">
+    <div class="col-md-4 border border-2 border-accent rounded-2 p-4">
       <h2 class="text-center">Connexion</h2>
       <form [formGroup]="loginForm" (ngSubmit)="login()">
         <div class="mb-3">
@@ -21,7 +21,7 @@
         <div *ngIf="errorMessage" class="alert alert-danger">
           {{ errorMessage }}
         </div>
-        <button type="submit" class="btn-accent w-100" [disabled]="loginForm.invalid">Se
+        <button type="submit" class="btn btn-accent w-100" [disabled]="loginForm.invalid">Se
           connecter</button>
       </form>
     </div>

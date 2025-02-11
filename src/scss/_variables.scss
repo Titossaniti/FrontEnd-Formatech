@@ -1,0 +1,16 @@
+// Vos couleurs
+$color-light-gray: #F7F7F7;
+$color-gray: #F0F0F0;
+$color-dark-gray: #D9D9D9;
+$color-deep-blue: #16006D;
+$color-primary: #603BFF;
+$color-secondary: #C2B6FE;
+$color-accent: #8976FF;
+
+.border-light-gray { border: 1px solid $color-light-gray !important; }
+.border-gray { border: 1px solid $color-gray !important; }
+.border-dark-gray { border: 1px solid $color-dark-gray !important; }
+.border-deep-blue { border: 1px solid $color-deep-blue !important; }
+.border-primary { border: 1px solid $color-primary !important; }
+.border-secondary { border: 1px solid $color-secondary !important; }
+.border-accent { border: 2px solid $color-accent !important; }
