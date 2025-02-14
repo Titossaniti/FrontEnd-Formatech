@@ -37,4 +37,43 @@ export class StorageService {
       console.warn('localStorage n\'est pas disponible.');
     }
   }
+
+  setUserId(userId: string): void {
+    this.setItem('user_id', userId);
+  }
+
+  getUserId(): string | null {
+    return this.getItem('user_id');
+  }
+
+  removeUserId(): void {
+    this.removeItem('user_id');
+  }
+
+  setUserRole(role: string): void {
+    this.setItem('user_role', role);
+  }
+
+  getUserRole(): string | null {
+    return this.getItem('user_role');
+  }
+
+  removeUserRole(): void {
+    this.removeItem('user_role');
+  }
+
+  // Object grouping id qnd role (needed ?)
+  setUser(user: { id: string, role: string }): void {
+    this.setItem('user', JSON.stringify(user));
+  }
+
+  getUser(): { id: string, role: string } | null {
+    const user = this.getItem('user');
+    return user ? JSON.parse(user) : null;
+  }
+
+  removeUser(): void {
+    this.removeItem('user');
+  }
+
 }
