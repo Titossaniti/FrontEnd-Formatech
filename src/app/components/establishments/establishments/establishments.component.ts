@@ -29,8 +29,9 @@ export class EstablishmentsComponent implements OnInit {
   establishments: Establishment[] = [];
   selectedEstablishment: Establishment | null = null;
   newEstablishment: Omit<Establishment, 'id'> = { name: '', address: '', city: '', postalCode: '', phone: '', email: '' };
+  isModalOpen: boolean = false;
   isEditing: boolean = false;
-  isCreating: boolean = false;
+  currentEstablishment: Establishment = { id: 0, name: '', address: '', city: '', postalCode: '', phone: '', email: '' };
 
   constructor(private establishmentService: EstablishmentService) {}
 
@@ -44,34 +45,43 @@ export class EstablishmentsComponent implements OnInit {
     });
   }
 
-  openCreateModal(): void {
-    this.isCreating = true;
-  }
+  openModal(isEdit: boolean, establishment?: Establishment): void {
+    this.isEditing = isEdit;
+    this.isModalOpen = true;
 
-  addEstablishment(): void {
-    this.establishmentService.addEstablishment(this.newEstablishment).subscribe(() => {
-      this.loadEstablishments();
-      this.newEstablishment = { name: '', address: '', city: '', postalCode: '', phone: '', email: '' };
-      this.isCreating = false;
-    });
-  }
-
-  editEstablishment(establishment: Establishment): void {
-    if (establishment) {
-      this.selectedEstablishment = { ...establishment };
-      this.isEditing = true;
+    if (isEdit && establishment) {
+      this.currentEstablishment = { ...establishment };
+    } else {
+      this.currentEstablishment = { id: 0, name: '', address: '', city: '', postalCode: '', phone: '', email: '' };
     }
   }
 
-  updateEstablishment(): void {
-    if (this.selectedEstablishment) {
-      this.establishmentService.updateEstablishment(this.selectedEstablishment.id, this.selectedEstablishment).subscribe(() => {
-        this.loadEstablishments();
-        this.selectedEstablishment = null;
-        this.isEditing = false;
-      });
+  closeModal(): void {
+    this.isModalOpen = false;
+    this.isEditing = false;
+    this.currentEstablishment = { id: 0, name: '', address: '', city: '', postalCode: '', phone: '', email: '' };
+  }
+
+
+  submitForm(): void {
+    if (this.isEditing) {
+      // Mode édition
+      this.establishmentService.updateEstablishment(this.currentEstablishment.id, this.currentEstablishment)
+        .subscribe(() => {
+          this.loadEstablishments();
+          this.closeModal();
+        });
+    } else {
+      // Mode création
+      this.establishmentService.addEstablishment(this.currentEstablishment)
+        .subscribe(() => {
+          this.loadEstablishments();
+          this.closeModal();
+        });
     }
   }
+
+
 
   deleteEstablishment(id: number): void {
     if (confirm("Voulez-vous vraiment supprimer cet établissement ?")) {

@@ -2,7 +2,7 @@
 <div class="container mt-4">
   <div>
     <h2>Les Établissements</h2>
-    <button class="btn btn-accent text-light mb-3" (click)="openCreateModal()">Créer un établissement</button>
+    <button class="btn btn-accent text-light mb-3" (click)="openModal(false)">Créer un établissement</button>
   </div>
   <table class="table table-striped">
     <thead>
@@ -25,93 +25,51 @@
       <td>{{ formatPhoneNumber(establishment.phone) }}</td>
       <td>{{ establishment.email }}</td>
       <td>
-        <button class="btn btn-accent text-light btn-sm" (click)="editEstablishment(establishment)">Modifier</button>
+        <button class="btn btn-accent text-light btn-sm" (click)="openModal(true, establishment)">Modifier</button>
         <button class="btn btn-danger btn-sm ms-2" (click)="deleteEstablishment(establishment.id)">Supprimer</button>
       </td>
     </tr>
     </tbody>
   </table>
 
-  <div *ngIf="isCreating" class="modal show d-block bg-dark bg-opacity-50" tabindex="-1">
+  <!-- Modal unique pour création et modification -->
+  <div *ngIf="isModalOpen" class="modal show d-block bg-dark bg-opacity-50" tabindex="-1">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Créer un établissement</h5>
-          <button type="button" class="btn-close" (click)="isCreating = false"></button>
+          <h5 class="modal-title">{{ isEditing ? 'Modifier' : 'Créer' }} un établissement</h5>
+          <button type="button" class="btn-close" (click)="closeModal()"></button>
         </div>
         <div class="modal-body">
-          <form (ngSubmit)="addEstablishment()">
+          <form (ngSubmit)="submitForm()">
             <div class="mb-3">
-              <input type="text" class="form-control" placeholder="Nom" [(ngModel)]="newEstablishment.name" name="name" required>
+              <input type="text" class="form-control" placeholder="Nom" [(ngModel)]="currentEstablishment.name" name="name" required>
             </div>
             <div class="mb-3">
-              <input type="text" class="form-control" placeholder="Adresse" [(ngModel)]="newEstablishment.address" name="address" required>
+              <input type="text" class="form-control" placeholder="Adresse" [(ngModel)]="currentEstablishment.address" name="address" required>
             </div>
             <div class="mb-3">
-              <input type="text" class="form-control" placeholder="Ville" [(ngModel)]="newEstablishment.city" name="city" required>
+              <input type="text" class="form-control" placeholder="Ville" [(ngModel)]="currentEstablishment.city" name="city" required>
             </div>
             <div class="mb-3">
-              <input type="number" class="form-control" placeholder="Code Postal" [(ngModel)]="newEstablishment.postalCode" name="postalCode" required>
+              <input type="text" class="form-control" placeholder="Code Postal" [(ngModel)]="currentEstablishment.postalCode" name="postalCode" required>
             </div>
             <div class="mb-3">
               <input
                 type="text"
                 class="form-control"
                 placeholder="Téléphone"
-                [(ngModel)]="newEstablishment.phone"
-                name="phone"
-                pattern="^0[1-9]([0-9]{8})$"
-                title="Le numéro doit être au format 0X XX XX XX XX"
-                required>
-            </div>
-            <div class="mb-3">
-              <input type="email" class="form-control" placeholder="Email" [(ngModel)]="newEstablishment.email" name="email" required>
-            </div>
-            <button type="submit" class="btn btn-accent text-light">Modifier</button>
-            <button type="button" class="btn btn-danger ms-2" (click)="isCreating = false">Annuler</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div *ngIf="isEditing && selectedEstablishment" class="modal show d-block bg-dark bg-opacity-50" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Modifier l'établissement</h5>
-          <button type="button" class="btn-close" (click)="isEditing = false"></button>
-        </div>
-        <div class="modal-body">
-          <form (ngSubmit)="updateEstablishment()">
-            <div class="mb-3">
-              <input type="text" class="form-control" [(ngModel)]="selectedEstablishment.name" name="name" required>
-            </div>
-            <div class="mb-3">
-              <input type="text" class="form-control" [(ngModel)]="selectedEstablishment.address" name="address" required>
-            </div>
-            <div class="mb-3">
-              <input type="text" class="form-control" [(ngModel)]="selectedEstablishment.city" name="city" required>
-            </div>
-            <div class="mb-3">
-              <input type="text" class="form-control" [(ngModel)]="selectedEstablishment.postalCode" name="postalCode" required>
-            </div>
-            <div class="mb-3">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Téléphone"
-                [(ngModel)]="selectedEstablishment.phone"
+                [(ngModel)]="currentEstablishment.phone"
                 name="phone"
                 pattern="^0[1-9]([0-9]{8})$"
                 title="Il doit s'agir d'un numéro de téléphone valide."
                 required>
             </div>
             <div class="mb-3">
-              <input type="email" class="form-control" [(ngModel)]="selectedEstablishment.email" name="email" required>
+              <input type="email" class="form-control" placeholder="Email" [(ngModel)]="currentEstablishment.email" name="email" required>
             </div>
-            <button type="submit" class="btn btn-accent text-light">Modifier</button>
-            <button type="button" class="btn btn-danger ms-2" (click)="isEditing = false">Annuler</button>
+            <button type="submit" class="btn btn-accent text-light">{{ isEditing ? 'Modifier' : 'Créer' }}</button>
+            <button type="button" class="btn btn-danger ms-2" (click)="closeModal()">Annuler</button>
           </form>
         </div>
       </div>
