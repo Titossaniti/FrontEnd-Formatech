@@ -20,17 +20,17 @@
         <label class="form-label">Date de naissance</label>
         <input type="date" class="form-control" [(ngModel)]="editableUserInfo.birthdate" name="birthdate">
       </div>
-      <button type="submit" class="btn btn-primary">Enregistrer</button>
-      <button type="button" class="btn btn-secondary ms-2" (click)="cancelEdit()">Annuler</button>
+      <button type="submit" class="btn btn-accent text-light">Enregistrer</button>
+      <button type="button" class="btn btn-danger ms-2" (click)="cancelEdit()">Annuler</button>
     </form>
 
-    <ng-template #displayMode>
+    <ng-template  #displayMode>
       <p><strong>Prénom :</strong> {{ user?.userInfo?.firstname }}</p>
       <p><strong>Nom :</strong> {{ user?.userInfo?.lastname }}</p>
       <p><strong>Email :</strong> {{ user?.email }}</p>
       <p><strong>Téléphone :</strong> {{ user?.userInfo?.phone }}</p>
       <p><strong>Date de naissance :</strong> {{ user?.userInfo?.birthdate | date }}</p>
-      <button class="btn btn-accent mt-3" (click)="editMode()">Modifier</button>
+      <button class="btn btn-accent mt-3 text-light" (click)="editMode()">Modifier</button>
     </ng-template>
   </div>
 </div>
