@@ -1,7 +1,9 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light border-2 border-bottom-accent">
   <div class="container-fluid">
 
-    <a class="navbar-brand" routerLink="/home">Bienvenue {{ user?.userInfo?.firstname }} {{ user?.userInfo?.lastname }}</a>
+    <a class="navbar-brand" routerLink="/home">
+      <img src="./assets/logo/logo-formatech.webp" width="30" height="30" alt="Logo de Formatech">
+    </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
