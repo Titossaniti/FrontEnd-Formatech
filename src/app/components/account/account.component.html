@@ -1,11 +1,36 @@
 <app-navbar></app-navbar>
-<div class="container bg-">
-  <h1>Mes informations</h1>
-  <div>
-    <p>Prénom : {{ userInfo.firstname }}</p>
-    <p>Nom : {{ userInfo.lastname }}</p>
-    <p>Email : {{ userInfo.email }}</p>
-    <p>Téléphone : {{ userInfo.phone }}</p>
-    <p>Date de naissance : {{ userInfo.birthdate | date }}</p>
+<div class="container mt-4">
+  <div class="card shadow-sm p-4">
+    <h2 class="mb-4">Mes informations</h2>
+
+    <form *ngIf="isEditing; else displayMode" (ngSubmit)="saveChanges()">
+      <div class="mb-3">
+        <label class="form-label">Prénom</label>
+        <input type="text" class="form-control" [(ngModel)]="editableUserInfo.firstname" name="firstname" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Nom</label>
+        <input type="text" class="form-control" [(ngModel)]="editableUserInfo.lastname" name="lastname" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Téléphone</label>
+        <input type="text" class="form-control" [(ngModel)]="editableUserInfo.phone" name="phone">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Date de naissance</label>
+        <input type="date" class="form-control" [(ngModel)]="editableUserInfo.birthdate" name="birthdate">
+      </div>
+      <button type="submit" class="btn btn-primary">Enregistrer</button>
+      <button type="button" class="btn btn-secondary ms-2" (click)="cancelEdit()">Annuler</button>
+    </form>
+
+    <ng-template #displayMode>
+      <p><strong>Prénom :</strong> {{ user.userInfo.firstname }}</p>
+      <p><strong>Nom :</strong> {{ user.userInfo.lastname }}</p>
+      <p><strong>Email :</strong> {{ user.email }}</p>
+      <p><strong>Téléphone :</strong> {{ user.userInfo.phone }}</p>
+      <p><strong>Date de naissance :</strong> {{ user.userInfo.birthdate | date }}</p>
+      <button class="btn btn-warning mt-3" (click)="editMode()">Modifier</button>
+    </ng-template>
   </div>
 </div>

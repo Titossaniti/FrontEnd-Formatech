@@ -1,30 +1,61 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../auth/auth.service';
-import {DatePipe} from '@angular/common';
+import { UserService} from '../../services/user/user.service';
+import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
 import {NavbarComponent} from '../navbar/navbar.component';
-import {UserInfo} from 'node:os';
+
+interface UserProfile {
+  id: number;
+  email: string;
+  role: string;
+  establishment: string | null;
+  userInfo: {
+    id: number;
+    firstname: string;
+    lastname: string;
+    phone: string;
+    birthdate: string | Date;
+  };
+}
 
 @Component({
   selector: 'app-account',
+  standalone: true,
   templateUrl: './account.component.html',
-  styleUrls: ['./account.component.css'],
   imports: [
-    DatePipe,
-    NavbarComponent
+    FormsModule,
+    NavbarComponent,
+    CommonModule,
   ],
-  standalone: true
+  styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
-  userInfo: any = {};
+  user!: UserProfile;
+  editableUserInfo!: UserProfile['userInfo'];
+  isEditing = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.authService.getUserProfile().subscribe((profile: any) => {
-      this.userInfo = {
-        ...profile.userInfo,
-        email: profile.email
-      };
+    this.userService.getUserProfile().subscribe(user => {
+      this.user = user;
+      this.editableUserInfo = { ...user.userInfo };
+    });
+  }
+
+  editMode(): void {
+    this.isEditing = true;
+    this.editableUserInfo = { ...this.user.userInfo };
+  }
+
+  cancelEdit(): void {
+    this.isEditing = false;
+  }
+
+  saveChanges(): void {
+    this.userService.updateUserProfile(this.editableUserInfo).subscribe(updatedUser => {
+      this.user.userInfo = updatedUser.userInfo;
+      this.isEditing = false;
     });
   }
 }

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Observable } from 'rxjs';
-import {StorageService} from '../services/storage/storage.service';
+import { Observable, tap } from 'rxjs';
+import { StorageService } from '../services/storage/storage.service';
 
 interface UserProfile {
   id: number;
@@ -27,7 +27,9 @@ export class AuthService {
   constructor(private http: HttpClient, private storageService: StorageService) {}
 
   login(credentials: { email: string; password: string }): Observable<string> {
-    return this.http.post(`${this.apiUrl}/auth/login`, credentials, { responseType: 'text' });
+    return this.http.post(`${this.apiUrl}/auth/login`, credentials, { responseType: 'text' }).pipe(
+      tap((token) => this.saveToken(token))
+    );
   }
 
   saveToken(token: string): void {
@@ -40,6 +42,7 @@ export class AuthService {
 
   logout(): void {
     this.storageService.removeItem('token');
+    this.storageService.removeUser();
   }
 
   isAuthenticated(): boolean {
@@ -47,6 +50,25 @@ export class AuthService {
   }
 
   getUserProfile(): Observable<UserProfile> {
-    return this.http.get<UserProfile>(`${this.apiUrl}/users/profile`);
+    return this.http.get<UserProfile>(`${this.apiUrl}/users/profile`).pipe(
+      tap((user) => this.saveUserProfile(user))
+    );
   }
+
+  private saveUserProfile(user: UserProfile): void {
+    this.storageService.setUser({ id: user.id.toString(), role: user.role });
+  }
+
+  getUserId(): string | null {
+    return this.storageService.getUserId();
+  }
+
+  getUserRole(): string | null {
+    return this.storageService.getUserRole();
+  }
+
+  updateUserProfile(userInfo: UserProfile['userInfo']): Observable<UserProfile> {
+    return this.http.put<UserProfile>(`${this.apiUrl}/users/${userInfo.id}`, { userInfo });
+  }
+
 }
