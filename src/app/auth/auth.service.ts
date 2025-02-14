@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable, tap } from 'rxjs';
 import { StorageService } from '../services/storage/storage.service';
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 interface UserProfile {
   id: number;
@@ -23,6 +24,7 @@ interface UserProfile {
 })
 export class AuthService {
   private apiUrl = environment.apiUrl;
+  private jwtHelper = new JwtHelperService();
 
   constructor(private http: HttpClient, private storageService: StorageService) {}
 
@@ -37,6 +39,7 @@ export class AuthService {
   }
 
   getToken(): string | null {
+    console.log('JWT Token:', this.storageService.getItem('token'));
     return this.storageService.getItem('token');
   }
 
@@ -47,6 +50,30 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     return !!this.getToken();
+  }
+
+  isTokenExpired(token?: string): boolean {
+    const authToken = token || this.getToken();
+    if (!authToken) return true;
+
+    try {
+      return this.jwtHelper.isTokenExpired(authToken);
+    } catch (error) {
+      console.error('Error decoding token:', error);
+      return true;
+    }
+  }
+
+  getDecodedToken(): any {
+    const token = this.getToken();
+    if (!token) return null;
+
+    try {
+      return this.jwtHelper.decodeToken(token);
+    } catch (error) {
+      console.error('Error decoding token:', error);
+      return null;
+    }
   }
 
   getUserProfile(): Observable<UserProfile> {

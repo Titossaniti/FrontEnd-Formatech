@@ -10,8 +10,7 @@ export const routes: Routes = [
   { path: 'login', loadComponent: () => import('./auth/login/login.component').then(m => m.LoginComponent) },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
-  { path: 'establishments', component: EstablishmentsComponent },
-
+  { path: 'establishments', component: EstablishmentsComponent, canActivate: [AuthGuard], data: { roles: ['SUPERADMIN'] } },
 
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: '/login' }
