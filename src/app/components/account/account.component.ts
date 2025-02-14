@@ -32,7 +32,7 @@ interface UserProfile {
 export class AccountComponent implements OnInit {
   user!: UserProfile;
   editableUserInfo!: UserProfile['userInfo'];
-  isEditing = false;
+  isEditing :boolean = false;
 
   constructor(private userService: UserService) {}
 
