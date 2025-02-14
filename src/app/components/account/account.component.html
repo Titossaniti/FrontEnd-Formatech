@@ -25,12 +25,12 @@
     </form>
 
     <ng-template #displayMode>
-      <p><strong>Prénom :</strong> {{ user.userInfo.firstname }}</p>
-      <p><strong>Nom :</strong> {{ user.userInfo.lastname }}</p>
-      <p><strong>Email :</strong> {{ user.email }}</p>
-      <p><strong>Téléphone :</strong> {{ user.userInfo.phone }}</p>
-      <p><strong>Date de naissance :</strong> {{ user.userInfo.birthdate | date }}</p>
-      <button class="btn btn-warning mt-3" (click)="editMode()">Modifier</button>
+      <p><strong>Prénom :</strong> {{ user?.userInfo?.firstname }}</p>
+      <p><strong>Nom :</strong> {{ user?.userInfo?.lastname }}</p>
+      <p><strong>Email :</strong> {{ user?.email }}</p>
+      <p><strong>Téléphone :</strong> {{ user?.userInfo?.phone }}</p>
+      <p><strong>Date de naissance :</strong> {{ user?.userInfo?.birthdate | date }}</p>
+      <button class="btn btn-accent mt-3" (click)="editMode()">Modifier</button>
     </ng-template>
   </div>
 </div>

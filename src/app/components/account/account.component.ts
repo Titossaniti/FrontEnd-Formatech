@@ -53,9 +53,15 @@ export class AccountComponent implements OnInit {
   }
 
   saveChanges(): void {
-    this.userService.updateUserProfile(this.editableUserInfo).subscribe(updatedUser => {
-      this.user.userInfo = updatedUser.userInfo;
-      this.isEditing = false;
+        this.userService.updateUserProfile(this.user, this.editableUserInfo).subscribe({
+      next: (updatedUser) => {
+        this.user.userInfo = updatedUser.userInfo;
+        this.isEditing = false;
+      },
+      error: (err) => {
+        console.error("Erreur lors de la mise à jour :", err);
+      }
     });
   }
+
 }

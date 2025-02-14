@@ -29,7 +29,26 @@ export class UserService {
     return this.http.get<UserProfile>(`${this.apiUrl}/users/profile`);
   }
 
-  updateUserProfile(userInfo: UserProfile['userInfo']): Observable<UserProfile> {
-    return this.http.put<UserProfile>(`${this.apiUrl}/users/${userInfo.id}`, { userInfo });
+  updateUserProfile(user: any, userInfo: any): Observable<any> {
+    const formattedUserInfo = {
+      firstname: userInfo.firstname,
+      lastname: userInfo.lastname,
+      phone: userInfo.phone,
+      birthdate: userInfo.birthdate.split('T')[0]
+    };
+
+    const body = {
+      user: {
+        email: user.email,
+        password: user.password || null,
+      },
+      userInfo: formattedUserInfo
+    };
+
+    return this.http.put<any>(`${this.apiUrl}/users/${user.id}`, body, {
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
+
+
 }
