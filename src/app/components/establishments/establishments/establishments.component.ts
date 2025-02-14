@@ -30,7 +30,7 @@ export class EstablishmentsComponent implements OnInit {
   selectedEstablishment: Establishment | null = null;
   newEstablishment: Omit<Establishment, 'id'> = { name: '', address: '', city: '', postalCode: '', phone: '', email: '' };
   isEditing: boolean = false;
-
+  isCreating: boolean = false;
 
   constructor(private establishmentService: EstablishmentService) {}
 
@@ -44,10 +44,15 @@ export class EstablishmentsComponent implements OnInit {
     });
   }
 
+  openCreateModal(): void {
+    this.isCreating = true;
+  }
+
   addEstablishment(): void {
     this.establishmentService.addEstablishment(this.newEstablishment).subscribe(() => {
       this.loadEstablishments();
       this.newEstablishment = { name: '', address: '', city: '', postalCode: '', phone: '', email: '' };
+      this.isCreating = false;
     });
   }
 

@@ -1,7 +1,9 @@
 <app-navbar></app-navbar>
 <div class="container mt-4">
-  <h2>Les Établissements</h2>
-
+  <div>
+    <h2>Les Établissements</h2>
+    <button class="btn btn-accent text-light mb-3" (click)="openCreateModal()">Créer un établissement</button>
+  </div>
   <table class="table table-striped">
     <thead>
     <tr>
@@ -30,30 +32,47 @@
     </tbody>
   </table>
 
-  <div class="mt-4">
-    <h4>Ajouter un établissement</h4>
-    <form (ngSubmit)="addEstablishment()">
-      <div class="mb-3">
-        <input type="text" class="form-control" placeholder="Nom" [(ngModel)]="newEstablishment.name" name="name" required>
+  <div *ngIf="isCreating" class="modal show d-block bg-dark bg-opacity-50" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Créer un établissement</h5>
+          <button type="button" class="btn-close" (click)="isCreating = false"></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="addEstablishment()">
+            <div class="mb-3">
+              <input type="text" class="form-control" placeholder="Nom" [(ngModel)]="newEstablishment.name" name="name" required>
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control" placeholder="Adresse" [(ngModel)]="newEstablishment.address" name="address" required>
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control" placeholder="Ville" [(ngModel)]="newEstablishment.city" name="city" required>
+            </div>
+            <div class="mb-3">
+              <input type="number" class="form-control" placeholder="Code Postal" [(ngModel)]="newEstablishment.postalCode" name="postalCode" required>
+            </div>
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Téléphone"
+                [(ngModel)]="newEstablishment.phone"
+                name="phone"
+                pattern="^0[1-9]([0-9]{8})$"
+                title="Le numéro doit être au format 0X XX XX XX XX"
+                required>
+            </div>
+            <div class="mb-3">
+              <input type="email" class="form-control" placeholder="Email" [(ngModel)]="newEstablishment.email" name="email" required>
+            </div>
+            <button type="submit" class="btn btn-accent text-light">Modifier</button>
+            <button type="button" class="btn btn-danger ms-2" (click)="isCreating = false">Annuler</button>
+          </form>
+        </div>
       </div>
-      <div class="mb-3">
-        <input type="text" class="form-control" placeholder="Adresse" [(ngModel)]="newEstablishment.address" name="address" required>
-      </div>
-      <div class="mb-3">
-        <input type="text" class="form-control" placeholder="Ville" [(ngModel)]="newEstablishment.city" name="city" required>
-      </div>
-      <div class="mb-3">
-        <input type="number" class="form-control" placeholder="Code Postal" [(ngModel)]="newEstablishment.postalCode" name="postalCode" required>
-      </div>
-      <div class="mb-3">
-        <input type="text" class="form-control" placeholder="Téléphone" [(ngModel)]="newEstablishment.phone" name="phone" pattern="^0[1-9]([0-9]{8})$"
-               title="Le numéro doit être au format 0X XX XX XX XX" required>
-      </div>
-      <div class="mb-3">
-        <input type="email" class="form-control" placeholder="Email" [(ngModel)]="newEstablishment.email" name="email" required>
-      </div>
-      <button type="submit" class="btn btn-accent text-light w-100">Créer</button>
-    </form>
+    </div>
   </div>
 
   <div *ngIf="isEditing && selectedEstablishment" class="modal show d-block bg-dark bg-opacity-50" tabindex="-1">
@@ -78,7 +97,15 @@
               <input type="text" class="form-control" [(ngModel)]="selectedEstablishment.postalCode" name="postalCode" required>
             </div>
             <div class="mb-3">
-              <input type="text" class="form-control" [(ngModel)]="selectedEstablishment.phone" name="phone" required>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Téléphone"
+                [(ngModel)]="selectedEstablishment.phone"
+                name="phone"
+                pattern="^0[1-9]([0-9]{8})$"
+                title="Il doit s'agir d'un numéro de téléphone valide."
+                required>
             </div>
             <div class="mb-3">
               <input type="email" class="form-control" [(ngModel)]="selectedEstablishment.email" name="email" required>
