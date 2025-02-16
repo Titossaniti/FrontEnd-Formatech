@@ -1,0 +1,78 @@
+<app-navbar></app-navbar>
+<div class="container mt-4">
+  <h2>Gestion des Formateurs</h2>
+  <button class="btn btn-accent text-light mb-3" (click)="openCreateModal()">Ajouter un Formateur</button>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Prénom</th>
+      <th>Email</th>
+      <th>Téléphone</th>
+      <th>Date de Naissance</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let trainer of trainers">
+      <td>{{ trainer.userInfo.lastname }}</td>
+      <td>{{ trainer.userInfo.firstname }}</td>
+      <td>{{ trainer.email }}</td>
+      <td>{{ trainer.userInfo.phone }}</td>
+      <td>{{ trainer.userInfo.birthdate | date: 'dd/MM/yyyy' }}</td>
+      <td>
+        <button class="btn btn-accent text-light btn-sm" (click)="openEditModal(trainer)">Modifier</button>
+        <button class="btn btn-danger btn-sm ms-2" (click)="deleteTrainer(trainer.id)">Supprimer</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <!-- MODAL CREATION -->
+  <div *ngIf="isCreating" class="modal show d-block bg-dark bg-opacity-50" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Ajouter un Formateur</h5>
+          <button type="button" class="btn-close" (click)="isCreating = false"></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="addTrainer()">
+            <input type="text" class="form-control mb-2" placeholder="Email" [(ngModel)]="newTrainer.email" name="email" required>
+            <input type="password" class="form-control mb-2" placeholder="Mot de passe" [(ngModel)]="newTrainer.password" name="password" required>
+            <input type="text" class="form-control mb-2" placeholder="Prénom" [(ngModel)]="newTrainer.userInfo.firstname" name="firstname" required>
+            <input type="text" class="form-control mb-2" placeholder="Nom" [(ngModel)]="newTrainer.userInfo.lastname" name="lastname" required>
+            <input type="text" class="form-control mb-2" placeholder="Téléphone" [(ngModel)]="newTrainer.userInfo.phone" name="phone" required>
+            <input type="date" class="form-control mb-2" [(ngModel)]="newTrainer.userInfo.birthdate" name="birthdate" required>
+            <button type="submit" class="btn btn-accent text-light">Créer</button>
+            <button type="button" class="btn btn-danger ms-2" (click)="isCreating = false">Annuler</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL MODIFICATION -->
+  <div *ngIf="isEditing" class="modal show d-block bg-dark bg-opacity-50" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modifier un Formateur</h5>
+          <button type="button" class="btn-close" (click)="isEditing = false"></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="updateTrainer()">
+            <input type="text" class="form-control mb-2" [(ngModel)]="editableTrainer!.user.email" name="email" required>
+            <input type="text" class="form-control mb-2" [(ngModel)]="editableTrainer!.userInfo.firstname" name="firstname" required>
+            <input type="text" class="form-control mb-2" [(ngModel)]="editableTrainer!.userInfo.lastname" name="lastname" required>
+            <input type="text" class="form-control mb-2" [(ngModel)]="editableTrainer!.userInfo.phone" name="phone" required>
+            <input type="date" class="form-control mb-2" [(ngModel)]="editableTrainer!.userInfo.birthdate" name="birthdate" required>
+            <button type="submit" class="btn btn-accent text-light">Modifier</button>
+            <button type="button" class="btn btn-danger ms-2" (click)="isEditing = false">Annuler</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

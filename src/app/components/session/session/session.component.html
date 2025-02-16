@@ -56,7 +56,7 @@
               <label for="endDate">Fin :</label>
               <input id="endDate" type="date" class="form-control" [(ngModel)]="newSession.endDate" name="endDate" required>
             </div>
-            <!-- Si Superadmin, permet de choisir un établissement -->
+            <!-- Si Superadmin, peeut choisir un établissement -->
             <div class="mb-3" *ngIf="isSuperAdmin">
               <label for="establishmentSelect">Établissement :</label>
               <select id="establishmentSelect" class="form-select" [(ngModel)]="selectedEstablishmentId" name="establishmentId">

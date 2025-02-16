@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { EstablishmentService} from '../../../services/establishments/establishments.service';
+import { EstablishmentService} from '../../services/establishments/establishments.service';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
-import {NavbarComponent} from '../../navbar/navbar.component';
+import {NavbarComponent} from '../navbar/navbar.component';
 
 interface Establishment {
   id: number;
@@ -27,8 +27,6 @@ interface Establishment {
 })
 export class EstablishmentsComponent implements OnInit {
   establishments: Establishment[] = [];
-  selectedEstablishment: Establishment | null = null;
-  newEstablishment: Omit<Establishment, 'id'> = { name: '', address: '', city: '', postalCode: '', phone: '', email: '' };
   isModalOpen: boolean = false;
   isEditing: boolean = false;
   currentEstablishment: Establishment = { id: 0, name: '', address: '', city: '', postalCode: '', phone: '', email: '' };
