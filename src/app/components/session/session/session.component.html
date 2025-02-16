@@ -1,0 +1,106 @@
+<app-navbar></app-navbar>
+<div class="container mt-4">
+  <h2>Sessions de Formation</h2>
+  <button class="btn btn-accent text-light mb-3" (click)="openCreateModal()">Créer une session</button>
+
+  <table class="table table-striped" *ngIf="sessions.length > 0">
+    <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Début</th>
+      <th>Fin</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let session of sessions">
+      <td>{{ session.name }}</td>
+      <td>{{ session.description }}</td>
+      <td>{{ session.type }}</td>
+      <td>{{ session.startDate | date:'dd/MM/yyyy'}}</td>
+      <td>{{ session.endDate | date: 'dd/MM/yyyy' }}</td>
+      <td>
+        <button class="btn btn-accent text-light btn-sm" (click)="editSession(session)">Modifier</button>
+        <button class="btn btn-danger btn-sm ms-2" (click)="deleteSession(session.id)">Supprimer</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal Ajouter Session -->
+  <div *ngIf="isCreating" class="modal show d-block bg-dark bg-opacity-50" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Créer une session</h5>
+          <button type="button" class="btn-close" (click)="isCreating = false"></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="addSession()">
+            <div class="mb-3">
+              <input type="text" class="form-control" placeholder="Nom" [(ngModel)]="newSession.name" name="name" required>
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control" placeholder="Description" [(ngModel)]="newSession.description" name="description">
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control" placeholder="Type" [(ngModel)]="newSession.type" name="type">
+            </div>
+            <div class="mb-3">
+              <label for="startDate">Début :</label>
+              <input id="startDate" type="date" class="form-control" [(ngModel)]="newSession.startDate" name="startDate" required>
+            </div>
+            <div class="mb-3">
+              <label for="endDate">Fin :</label>
+              <input id="endDate" type="date" class="form-control" [(ngModel)]="newSession.endDate" name="endDate" required>
+            </div>
+            <!-- Si Superadmin, permet de choisir un établissement -->
+            <div class="mb-3" *ngIf="isSuperAdmin">
+              <label for="establishmentSelect">Établissement :</label>
+              <select id="establishmentSelect" class="form-select" [(ngModel)]="selectedEstablishmentId" name="establishmentId">
+                <option *ngFor="let establishment of establishments" [value]="establishment.id">{{ establishment.name }}</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-accent text-light">Créer</button>
+            <button type="button" class="btn btn-danger ms-2" (click)="isCreating = false">Annuler</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Modifier Session -->
+  <div *ngIf="isEditing && selectedSession" class="modal show d-block bg-dark bg-opacity-50" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modifier la session</h5>
+          <button type="button" class="btn-close" (click)="isEditing = false"></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="updateSession()">
+            <div class="mb-3">
+              <input type="text" class="form-control" [(ngModel)]="selectedSession.name" name="name" required>
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control" [(ngModel)]="selectedSession.description" name="description">
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control" [(ngModel)]="selectedSession.type" name="type">
+            </div>
+            <div class="mb-3">
+              <input type="date" class="form-control" [(ngModel)]="selectedSession.startDate" name="startDate" required>
+            </div>
+            <div class="mb-3">
+              <input type="date" class="form-control" [(ngModel)]="selectedSession.endDate" name="endDate" required>
+            </div>
+            <button type="submit" class="btn btn-accent text-light">Modifier</button>
+            <button type="button" class="btn btn-danger ms-2" (click)="isEditing = false">Annuler</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,11 +7,11 @@ $color-primary: #603BFF;
 $color-secondary: #C2B6FE;
 $color-accent: #8976FF;
 
-.border-light-gray { border: 1px solid $color-light-gray !important; }
-.border-gray { border: 1px solid $color-gray !important; }
-.border-dark-gray { border: 1px solid $color-dark-gray !important; }
-.border-deep-blue { border: 1px solid $color-deep-blue !important; }
-.border-primary { border: 1px solid $color-primary !important; }
-.border-secondary { border: 1px solid $color-secondary !important; }
+.border-light-gray { border: 2px solid $color-light-gray !important; }
+.border-gray { border: 2px solid $color-gray !important; }
+.border-dark-gray { border: 2px solid $color-dark-gray !important; }
+.border-deep-blue { border: 2px solid $color-deep-blue !important; }
+.border-primary { border: 2px solid $color-primary !important; }
+.border-secondary { border: 2px solid $color-secondary !important; }
 .border-accent { border: 2px solid $color-accent !important; }
 .border-bottom-accent { border-bottom: 2px solid $color-accent !important; }

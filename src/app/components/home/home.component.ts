@@ -16,16 +16,15 @@ import {RouterLink} from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  userRole: string | null = null;
+  isSuperAdmin: boolean = false;
+  isAdmin: boolean = false;
 
   constructor(private storageService: StorageService) {}
 
   ngOnInit(): void {
-    this.userRole = this.storageService.getUserRole();
-    console.log('User role:', this.userRole);
-  }
+    const userRole = this.storageService.getUserRole();
 
-  isSuperAdmin(): boolean {
-    return this.userRole === 'SUPERADMIN';
+    this.isSuperAdmin = userRole === 'SUPERADMIN';
+    this.isAdmin = userRole === 'ADMIN';
   }
 }

@@ -193,6 +193,7 @@
 @import "bootstrap/scss/variables-dark";
 
 $theme-colors: map-merge($theme-colors, (
+  "primary": $color-primary,
   "light-gray": $color-light-gray,
   "gray": $color-gray,
   "dark-gray": $color-dark-gray,
