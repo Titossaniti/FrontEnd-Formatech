@@ -9,7 +9,10 @@ interface UserProfile {
   id: number;
   email: string;
   role: string;
-  establishment: string | null;
+  establishment: {
+    id: number;
+    name: string;
+  } | null;
   userInfo: {
     id: number;
     firstname: string;
@@ -83,7 +86,10 @@ export class AuthService {
   }
 
   private saveUserProfile(user: UserProfile): void {
-    this.storageService.setUser({ id: user.id.toString(), role: user.role });
+    this.storageService.setUser({
+      id: user.id.toString(),
+      role: user.role,
+      establishment: user.establishment ? user.establishment.id.toString() : null});
     this.storageService.setUserRole(user.role);
   }
 

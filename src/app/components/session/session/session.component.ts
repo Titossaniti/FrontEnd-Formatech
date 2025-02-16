@@ -3,7 +3,7 @@ import { SessionService } from '../../../services/session/session.service';
 import { EstablishmentService } from '../../../services/establishments/establishments.service';
 import { StorageService } from '../../../services/storage/storage.service';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import {CommonModule} from '@angular/common';
 import {NavbarComponent} from '../../navbar/navbar.component';
 
 interface Session {
@@ -50,7 +50,7 @@ export class SessionComponent implements OnInit {
   constructor(
     private sessionService: SessionService,
     private establishmentService: EstablishmentService,
-    private storageService: StorageService
+    private storageService: StorageService,
   ) {}
 
   ngOnInit(): void {
@@ -78,9 +78,17 @@ export class SessionComponent implements OnInit {
 
   addSession(): void {
     if (this.isSuperAdmin && this.selectedEstablishmentId) {
+      // SuperAdmin, il choisit un établissement
       this.newSession.establishmentId = this.selectedEstablishmentId;
     } else {
-      this.newSession.establishmentId = Number(this.storageService.getUser()?.id);
+      // Admin, sélectionne automatiquement son établissement
+      const user = this.storageService.getUser();
+      if (user && user.establishment) {
+        this.newSession.establishmentId = Number(user.establishment);
+      } else {
+        console.error("Impossible de récupérer l'établissement de l'admin.");
+        return;
+      }
     }
 
     this.sessionService.createSession(this.newSession, this.newSession.establishmentId).subscribe(() => {
@@ -89,6 +97,7 @@ export class SessionComponent implements OnInit {
       this.newSession = { name: '', description: '', type: '', startDate: '', endDate: '', establishmentId: 0 };
     });
   }
+
 
   editSession(session: Session): void {
     this.selectedSession = { ...session };
@@ -112,4 +121,5 @@ export class SessionComponent implements OnInit {
       });
     }
   }
+
 }
