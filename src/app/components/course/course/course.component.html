@@ -1,0 +1,65 @@
+<app-navbar></app-navbar>
+<div class="container mt-4">
+  <h2>Gestion des Cours</h2>
+  <button class="btn btn-accent text-light mb-3" (click)="openCreateModal()">Ajouter un Cours</button>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Session</th>
+      <th>Module</th>
+      <th>Formateur</th>
+      <th>Début</th>
+      <th>Fin</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let course of courses">
+      <td>{{ sessions.find(s => s.id === course.sessionId)?.name }}</td>
+      <td>{{ modules.find(m => m.id === course.moduleId)?.name }}</td>
+      <td>{{ trainers.find(t => t.id === course.trainerId)?.userInfo.firstname }} {{ trainers.find(t => t.id === course.trainerId)?.userInfo.lastname }}</td>
+      <td>{{ formatDate(course.startDate) }}</td>
+      <td>{{ formatDate(course.endDate) }}</td>
+      <td>
+        <button class="btn btn-danger btn-sm ms-2" (click)="deleteCourse(course)">Supprimer</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <!-- MODAL CRÉATION -->
+  <div *ngIf="isCreating" class="modal show d-block bg-dark bg-opacity-50">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Ajouter un Cours</h5>
+          <button type="button" class="btn-close" (click)="isCreating = false"></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="addCourse()">
+            <select class="form-control mb-2" [(ngModel)]="selectedSessionId" name="sessionId" required>
+              <option *ngFor="let session of sessions" [value]="session.id">{{ session.name }}</option>
+            </select>
+
+            <select class="form-control mb-2" [(ngModel)]="selectedModuleId" name="moduleId" required>
+              <option *ngFor="let module of modules" [value]="module.id">{{ module.name }}</option>
+            </select>
+
+            <select class="form-control mb-2" [(ngModel)]="selectedTrainerId" name="trainerId" required>
+              <option *ngFor="let trainer of trainers" [value]="trainer.id">
+                {{ trainer.userInfo.firstname }} {{ trainer.userInfo.lastname }}
+              </option>
+            </select>
+
+            <input type="date" class="form-control mb-2" [(ngModel)]="newCourse.startDate" name="startDate" required>
+            <input type="date" class="form-control mb-2" [(ngModel)]="newCourse.endDate" name="endDate" required>
+
+            <button type="submit" class="btn btn-accent text-light">Créer</button>
+            <button type="button" class="btn btn-danger ms-2" (click)="isCreating = false">Annuler</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
