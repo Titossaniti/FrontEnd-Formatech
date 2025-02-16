@@ -16,6 +16,11 @@ interface Student {
   };
 }
 
+interface StudentForm {
+  user: { email: string };
+  userInfo: { firstname: string; lastname: string; phone: string; birthdate: string };
+}
+
 interface Session {
   id: number;
   name: string;
@@ -86,13 +91,18 @@ export class StudentComponent implements OnInit {
     this.selectedStudent = student;
     this.editableStudent = {
       user: { email: student.email },
-      userInfo: student.userInfo ? { ...student.userInfo } : { firstname: '', lastname: '', phone: '', birthdate: '' }
+      userInfo: {
+        firstname: student.userInfo?.firstname || '',
+        lastname: student.userInfo?.lastname || '',
+        phone: student.userInfo?.phone || '',
+        birthdate: student.userInfo?.birthdate ? student.userInfo.birthdate.split('T')[0] : ''
+      }
     };
     this.isEditing = true;
   }
 
   updateStudent(): void {
-    if (this.selectedStudent) {
+    if (this.selectedStudent && this.editableStudent) {
       this.studentService.updateStudent(this.selectedStudent.id, this.editableStudent).subscribe(() => {
         this.loadStudents();
         this.isEditing = false;

@@ -1,41 +1,40 @@
 <app-navbar></app-navbar>
 <div class="container">
-  <h1>Bienvenue sur l'accueil</h1>
+  <h1 class="text-center text-primary fw-bolder mt-2">FORMATECH</h1>
 
-  <!-- Bouton d'accès (visible les rôles) -->
   <div class="mt-4" *ngIf="isSuperAdmin">
     <a routerLink="/establishments" class="btn btn-primary text-light btn-lg w-100">
-      Gérer les établissements
+      Établissements
     </a>
   </div>
   <div class="mt-4" *ngIf="isSuperAdmin">
     <a routerLink="/createAdmins" class="btn btn-primary text-light btn-lg w-100">
-      Gérer les administrateurs
+      Administrateurs
     </a>
   </div>
   <div *ngIf="isSuperAdmin || isAdmin" class="mt-3">
     <a routerLink="/sessions" class="btn btn-primary text-light btn-lg w-100">
-      Gérer les Sessions de formation
-    </a>
-  </div>
-  <div *ngIf="isSuperAdmin || isAdmin" class="mt-3">
-    <a routerLink="/trainers" class="btn btn-primary text-light btn-lg w-100">
-      Gérer les formateurs
+      Sessions de formation
     </a>
   </div>
   <div *ngIf="isSuperAdmin || isAdmin" class="mt-3">
     <a routerLink="/modules" class="btn btn-primary text-light btn-lg w-100">
-      Gérer les modules
+      Modules
+    </a>
+  </div>
+  <div *ngIf="isSuperAdmin || isAdmin" class="mt-3">
+    <a routerLink="/trainers" class="btn btn-primary text-light btn-lg w-100">
+      Formateurs
     </a>
   </div>
   <div *ngIf="isSuperAdmin || isAdmin" class="mt-3">
     <a routerLink="/courses" class="btn btn-primary text-light btn-lg w-100">
-      Gérer les cours
+      Cours
     </a>
   </div>
   <div *ngIf="isSuperAdmin || isAdmin" class="mt-3">
     <a routerLink="/students" class="btn btn-primary text-light btn-lg w-100">
-      Gérer les élèves
+      Élèves
     </a>
   </div>
 </div>

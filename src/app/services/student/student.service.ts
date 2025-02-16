@@ -30,8 +30,8 @@ export class StudentService {
     return this.http.post(`${this.apiUrl}/users/students/${sessionId}`, students);
   }
 
-  updateStudent(studentId: number, studentData: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/users/${studentId}`, studentData);
+  updateStudent(studentId: number, studentData: { user: { email: string }, userInfo: { firstname: string, lastname: string, phone: string, birthdate: string } }): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/users/${studentId}`, studentData);
   }
 
   removeStudentFromSession(sessionId: number, studentId: number): Observable<void> {

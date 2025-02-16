@@ -66,4 +66,28 @@
       </div>
     </div>
   </div>
+
+  <!-- MODAL MODIFICATION -->
+  <div *ngIf="isEditing" class="modal show d-block bg-dark bg-opacity-50" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modifier un Élève</h5>
+          <button type="button" class="btn-close" (click)="isEditing = false"></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="updateStudent()">
+            <input type="text" class="form-control mb-2" [(ngModel)]="editableStudent!.user.email" name="email" placeholder="Email" required>
+            <input type="text" class="form-control mb-2" [(ngModel)]="editableStudent!.userInfo.firstname" name="firstname" placeholder="Nom">
+            <input type="text" class="form-control mb-2" [(ngModel)]="editableStudent!.userInfo.lastname" name="lastname" placeholder="Prénom">
+            <input type="text" class="form-control mb-2" [(ngModel)]="editableStudent!.userInfo.phone" name="phone" placeholder="Téléphone">
+            <label>Date de naissance :</label>
+            <input type="date" class="form-control mb-2" [(ngModel)]="editableStudent!.userInfo.birthdate" name="birthdate">
+            <button type="submit" class="btn btn-accent text-light">Modifier</button>
+            <button type="button" class="btn btn-danger ms-2" (click)="isEditing = false">Annuler</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
