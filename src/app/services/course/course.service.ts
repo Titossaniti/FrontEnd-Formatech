@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 interface Course {
+  sessionModuleId: number;
   sessionId: number;
   moduleId: number;
   trainerId: number;
@@ -23,8 +24,8 @@ export class CourseService {
     return this.http.get<Course[]>(`${this.apiUrl}/session-with-modules`);
   }
 
-  addCourse(sessionId: number, moduleId: number, trainerId: number, courseData: Course): Observable<any> {
-    return this.http.post<any>(
+  addCourse(sessionId: number, moduleId: number, trainerId: number, courseData: Omit<Course, 'sessionModuleId'>): Observable<Course> {
+    return this.http.post<Course>(
       `${this.apiUrl}/session-with-modules/${sessionId}/modules/${moduleId}/trainers/${trainerId}`,
       courseData
     );

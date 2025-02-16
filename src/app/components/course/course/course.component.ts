@@ -4,8 +4,8 @@ import { ModuleService } from '../../../services/module/module.service';
 import { TrainerService } from '../../../services/trainer/trainer.service';
 import { CourseService } from '../../../services/course/course.service';
 import { FormsModule } from '@angular/forms';
-import { CommonModule, DatePipe } from '@angular/common';
 import { NavbarComponent } from '../../navbar/navbar.component';
+import {CommonModule} from '@angular/common';
 
 interface Course {
   sessionModuleId: number;
@@ -40,7 +40,7 @@ interface Trainer {
   standalone: true,
   templateUrl: './course.component.html',
   styleUrls: ['./course.component.css'],
-  imports: [CommonModule, FormsModule, NavbarComponent, DatePipe]
+  imports: [CommonModule, FormsModule, NavbarComponent],
 })
 export class CourseComponent implements OnInit {
   courses: Course[] = [];
@@ -67,7 +67,6 @@ export class CourseComponent implements OnInit {
     private moduleService: ModuleService,
     private trainerService: TrainerService,
     private courseService: CourseService,
-    private datePipe: DatePipe
   ) {}
 
   ngOnInit(): void {
@@ -128,7 +127,19 @@ export class CourseComponent implements OnInit {
     }
   }
 
-  formatDate(date: string | null): string {
-    return date ? this.datePipe.transform(date, 'dd/MM/yyyy')! : 'N/A';
+  getSessionName(sessionId: number): string {
+    const session = this.sessions.find(s => s.id === sessionId);
+    return session ? session.name : 'Non précisé';
   }
+
+  getModuleName(moduleId: number): string {
+    const module = this.modules.find(m => m.id === moduleId);
+    return module ? module.name : 'Non précisé';
+  }
+
+  getTrainerName(trainerId: number): string {
+    const trainer = this.trainers.find(t => t.id === trainerId);
+    return trainer ? `${trainer.userInfo.firstname} ${trainer.userInfo.lastname}` : 'Non précisé';
+  }
+
 }

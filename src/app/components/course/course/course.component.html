@@ -16,11 +16,11 @@
     </thead>
     <tbody>
     <tr *ngFor="let course of courses">
-      <td>{{ sessions.find(s => s.id === course.sessionId)?.name }}</td>
-      <td>{{ modules.find(m => m.id === course.moduleId)?.name }}</td>
-      <td>{{ trainers.find(t => t.id === course.trainerId)?.userInfo.firstname }} {{ trainers.find(t => t.id === course.trainerId)?.userInfo.lastname }}</td>
-      <td>{{ formatDate(course.startDate) }}</td>
-      <td>{{ formatDate(course.endDate) }}</td>
+      <td>{{ getSessionName(course.sessionId) }}</td>
+      <td>{{ getModuleName(course.moduleId) }}</td>
+      <td>{{ getTrainerName(course.trainerId) }}</td>
+      <td>{{ course.startDate | date:'dd/MM/yyyy' }}</td>
+      <td>{{ course.endDate | date:'dd/MM/yyyy' }}</td>
       <td>
         <button class="btn btn-danger btn-sm ms-2" (click)="deleteCourse(course)">Supprimer</button>
       </td>
