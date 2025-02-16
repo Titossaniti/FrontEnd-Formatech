@@ -84,6 +84,7 @@ export class AuthService {
 
   private saveUserProfile(user: UserProfile): void {
     this.storageService.setUser({ id: user.id.toString(), role: user.role });
+    this.storageService.setUserRole(user.role);
   }
 
   getUserId(): string | null {

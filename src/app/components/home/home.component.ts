@@ -12,6 +12,7 @@ import {RouterLink} from '@angular/router';
     CommonModule,
     RouterLink,
   ],
+  standalone: true,
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
@@ -21,6 +22,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.userRole = this.storageService.getUserRole();
+    console.log('User role:', this.userRole);
   }
 
   isSuperAdmin(): boolean {
