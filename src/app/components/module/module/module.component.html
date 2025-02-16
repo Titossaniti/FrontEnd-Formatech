@@ -1,0 +1,65 @@
+<app-navbar></app-navbar>
+<div class="container mt-4">
+  <h2>Gestion des Modules</h2>
+  <button class="btn btn-accent text-light mb-3" (click)="openCreateModal()">Créer un Module</button>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let module of modules">
+      <td>{{ module.name }}</td>
+      <td>{{ module.description }}</td>
+      <td>
+        <button class="btn btn-accent text-light btn-sm" (click)="openEditModal(module)">Modifier</button>
+        <button class="btn btn-danger btn-sm ms-2" (click)="deleteModule(module.id)">Supprimer</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <!-- MODAL CREATION -->
+  <div *ngIf="isCreating" class="modal show d-block bg-dark bg-opacity-50" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Créer un Module</h5>
+          <button type="button" class="btn-close" (click)="isCreating = false"></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="addModule()">
+            <input type="text" class="form-control mb-2" placeholder="Nom du module" [(ngModel)]="newModule.name" name="name" required>
+            <input type="text" class="form-control mb-2" placeholder="Description" [(ngModel)]="newModule.description" name="description" required>
+            <button type="submit" class="btn btn-accent text-light">Créer</button>
+            <button type="button" class="btn btn-danger ms-2" (click)="isCreating = false">Annuler</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL MODIFICATION -->
+  <div *ngIf="isEditing" class="modal show d-block bg-dark bg-opacity-50" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modifier un Module</h5>
+          <button type="button" class="btn-close" (click)="isEditing = false"></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="updateModule()">
+            <input type="text" class="form-control mb-2" [(ngModel)]="editableModule!.name" name="name" required>
+            <input type="text" class="form-control mb-2" [(ngModel)]="editableModule!.description" name="description" required>
+            <button type="submit" class="btn btn-accent text-light">Modifier</button>
+            <button type="button" class="btn btn-danger ms-2" (click)="isEditing = false">Annuler</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
