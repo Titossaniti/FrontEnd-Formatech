@@ -1,0 +1,56 @@
+<app-navbar></app-navbar>
+<div class="container mt-4">
+  <h2>Gestion des Administrateurs</h2>
+  <button class="btn btn-primary mb-3" (click)="openModal()">Ajouter un administrateur</button>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Email</th>
+      <th>Établissement</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let admin of admins">
+      <td>{{ admin.email }}</td>
+      <td>{{ admin.establishment?.name || 'Aucun' }}</td>
+      <td>
+        <button class="btn btn-danger btn-sm" (click)="deleteAdmin(admin.id)">Supprimer</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal pour ajouter un admin -->
+  <div *ngIf="isModalOpen" class="modal show d-block bg-dark bg-opacity-50" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Ajouter un administrateur</h5>
+          <button type="button" class="btn-close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="addAdmin()">
+            <div class="mb-3">
+              <input type="email" class="form-control" placeholder="Email de l'admin" [(ngModel)]="newAdminEmail" name="email" required>
+            </div>
+            <div class="mb-3">
+              <input type="password" class="form-control" placeholder="Mot de passe" [(ngModel)]="newAdminPassword" name="password" required>
+            </div>
+            <div class="mb-3">
+              <select class="form-select" [(ngModel)]="selectedEstablishmentId" name="establishment" required>
+                <option [value]="null" disabled selected>Choisir un établissement</option>
+                <option *ngFor="let establishment of establishments" [value]="establishment.id">
+                  {{ establishment.name }}
+                </option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-accent text-light">Ajouter</button>
+            <button type="button" class="btn btn-danger ms-2" (click)="closeModal()">Annuler</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -87,16 +87,4 @@ export class AuthService {
     this.storageService.setUserRole(user.role);
   }
 
-  getUserId(): string | null {
-    return this.storageService.getUserId();
-  }
-
-  getUserRole(): string | null {
-    return this.storageService.getUserRole();
-  }
-
-  updateUserProfile(userInfo: UserProfile['userInfo']): Observable<UserProfile> {
-    return this.http.put<UserProfile>(`${this.apiUrl}/users/${userInfo.id}`, { userInfo });
-  }
-
 }

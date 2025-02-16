@@ -4,6 +4,7 @@ import {HomeComponent} from './components/home/home.component';
 import {AuthGuard} from './auth/auth.guard';
 import {AccountComponent} from './components/account/account.component';
 import {EstablishmentsComponent} from './components/establishments/establishments/establishments.component';
+import {CreateAdminComponent} from './components/create-admin/create-admin.component';
 
 export const routes: Routes = [
   // Lazy loading pour Login car si un user est déjà connecté, il n'a pas besoin de charger le module.
@@ -11,6 +12,7 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
   { path: 'establishments', component: EstablishmentsComponent, canActivate: [AuthGuard], data: { roles: ['SUPERADMIN'] } },
+  { path: 'createAdmins', component: CreateAdminComponent, canActivate: [AuthGuard], data: { roles: ['SUPERADMIN'] } },
 
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: '/login' }
