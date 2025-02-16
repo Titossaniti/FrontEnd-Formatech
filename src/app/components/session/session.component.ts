@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionService } from '../../../services/session/session.service';
-import { EstablishmentService } from '../../../services/establishments/establishments.service';
-import { StorageService } from '../../../services/storage/storage.service';
+import { SessionService } from '../../services/session/session.service';
+import { EstablishmentService } from '../../services/establishments/establishments.service';
+import { StorageService } from '../../services/storage/storage.service';
 import { FormsModule } from '@angular/forms';
 import {CommonModule} from '@angular/common';
-import {NavbarComponent} from '../../navbar/navbar.component';
+import {NavbarComponent} from '../navbar/navbar.component';
 
 interface Session {
   id: number;

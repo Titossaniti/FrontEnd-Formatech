@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { TrainerService } from '../../../services/trainer/trainer.service';
+import { TrainerService } from '../../services/trainer/trainer.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from '../../navbar/navbar.component';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 interface Trainer {
   id: number;

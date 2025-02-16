@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionService } from '../../../services/session/session.service';
-import { ModuleService } from '../../../services/module/module.service';
-import { TrainerService } from '../../../services/trainer/trainer.service';
-import { CourseService } from '../../../services/course/course.service';
+import { SessionService } from '../../services/session/session.service';
+import { ModuleService } from '../../services/module/module.service';
+import { TrainerService } from '../../services/trainer/trainer.service';
+import { CourseService } from '../../services/course/course.service';
 import { FormsModule } from '@angular/forms';
-import { NavbarComponent } from '../../navbar/navbar.component';
+import { NavbarComponent } from '../navbar/navbar.component';
 import {CommonModule} from '@angular/common';
 
 interface Course {

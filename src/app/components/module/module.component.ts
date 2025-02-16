@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ModuleService } from '../../../services/module/module.service';
+import { ModuleService } from '../../services/module/module.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from '../../navbar/navbar.component';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 interface Module {
   id: number;

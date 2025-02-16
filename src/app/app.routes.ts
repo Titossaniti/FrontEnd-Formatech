@@ -5,10 +5,11 @@ import {AuthGuard} from './auth/auth.guard';
 import {AccountComponent} from './components/account/account.component';
 import {EstablishmentsComponent} from './components/establishments/establishments.component';
 import {CreateAdminComponent} from './components/create-admin/create-admin.component';
-import {SessionComponent} from './components/session/session/session.component';
-import {TrainerComponent} from './components/trainer/trainer/trainer.component';
-import {ModuleComponent} from './components/module/module/module.component';
-import {CourseComponent} from './components/course/course/course.component';
+import {SessionComponent} from './components/session/session.component';
+import {TrainerComponent} from './components/trainer/trainer.component';
+import {ModuleComponent} from './components/module/module.component';
+import {CourseComponent} from './components/course/course.component';
+import {StudentComponent} from './components/student/student.component';
 
 export const routes: Routes = [
   // Lazy loading pour Login car si un user est déjà connecté, il n'a pas besoin de charger le module.
@@ -21,6 +22,7 @@ export const routes: Routes = [
   { path: 'trainers', component: TrainerComponent, canActivate: [AuthGuard], data: { roles: ['SUPERADMIN', 'ADMIN'] } },
   { path: 'modules', component: ModuleComponent, canActivate: [AuthGuard], data: { roles: ['SUPERADMIN', 'ADMIN'] } },
   { path: 'courses', component: CourseComponent, canActivate: [AuthGuard], data: { roles: ['SUPERADMIN', 'ADMIN'] } },
+  { path: 'students', component: StudentComponent, canActivate: [AuthGuard], data: { roles: ['SUPERADMIN', 'ADMIN'] } },
 
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: '/login' }
