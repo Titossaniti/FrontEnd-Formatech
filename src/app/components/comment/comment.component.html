@@ -1,0 +1,46 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-4">
+  <h2>Gestion des Notes & Commentaires</h2>
+
+  <div class="row mb-3">
+    <div class="col">
+      <label>Session :</label>
+      <select class="form-control" [(ngModel)]="selectedSessionId" (change)="loadModules()">
+        <option *ngFor="let session of sessions" [value]="session.id">{{ session.name }}</option>
+      </select>
+    </div>
+
+    <div class="col">
+      <label>Module :</label>
+      <select class="form-control" [(ngModel)]="selectedModuleId" (change)="loadComments()">
+        <option *ngFor="let module of modules" [value]="module.id">{{ module.name }}</option>
+      </select>
+    </div>
+  </div>
+
+  <table class="table table-striped" *ngIf="comments.length > 0">
+    <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Prénom</th>
+      <th>Note</th>
+      <th>Commentaire</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let comment of comments">
+      <td>{{ comment.student?.userInfo?.lastname || 'N/A' }}</td>
+      <td>{{ comment.student?.userInfo?.firstname || 'N/A' }}</td>
+      <td>
+        <input type="number" min="0" max="20" class="form-control" [(ngModel)]="comment.grade" required>
+      </td>
+      <td>
+        <input type="text" class="form-control" [(ngModel)]="comment.comment" required>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <button class="btn btn-primary mt-3" (click)="saveComments()" *ngIf="comments.length > 0">Enregistrer</button>
+</div>

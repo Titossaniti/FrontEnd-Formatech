@@ -21,6 +21,10 @@ export class ModuleService {
     return this.http.get<Module[]>(this.apiUrl);
   }
 
+  getModulesBySession(sessionId: number): Observable<Module[]> {
+    return this.http.get<Module[]>(`http://localhost:8080/api/session-with-modules/${sessionId}/modules`);
+  }
+
   createModule(moduleData: Omit<Module, 'id'>): Observable<Module> {
     return this.http.post<Module>(this.apiUrl, moduleData);
   }

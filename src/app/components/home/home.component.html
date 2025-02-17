@@ -37,4 +37,9 @@
       Élèves
     </a>
   </div>
+  <div *ngIf="isAdmin || isTrainer" class="mt-3">
+    <a routerLink="/comments" class="btn btn-primary text-light btn-lg w-100">
+      Notes & Commentaires
+    </a>
+  </div>
 </div>

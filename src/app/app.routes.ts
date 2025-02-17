@@ -10,6 +10,7 @@ import {TrainerComponent} from './components/trainer/trainer.component';
 import {ModuleComponent} from './components/module/module.component';
 import {CourseComponent} from './components/course/course.component';
 import {StudentComponent} from './components/student/student.component';
+import {CommentComponent} from './components/comment/comment.component';
 
 export const routes: Routes = [
   // Lazy loading pour Login car si un user est déjà connecté, il n'a pas besoin de charger le module.
@@ -23,6 +24,7 @@ export const routes: Routes = [
   { path: 'modules', component: ModuleComponent, canActivate: [AuthGuard], data: { roles: ['SUPERADMIN', 'ADMIN'] } },
   { path: 'courses', component: CourseComponent, canActivate: [AuthGuard], data: { roles: ['SUPERADMIN', 'ADMIN'] } },
   { path: 'students', component: StudentComponent, canActivate: [AuthGuard], data: { roles: ['SUPERADMIN', 'ADMIN'] } },
+  { path: 'comments', component: CommentComponent, canActivate: [AuthGuard], data: { roles: ['ADMIN', 'TRAINER', 'STUDENT'] } },
 
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: '/login' }

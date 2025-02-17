@@ -18,6 +18,8 @@ import {RouterLink} from '@angular/router';
 export class HomeComponent implements OnInit {
   isSuperAdmin: boolean = false;
   isAdmin: boolean = false;
+  isTrainer: boolean = false;
+  isStudent: boolean = false;
 
   constructor(private storageService: StorageService) {}
 
@@ -26,5 +28,7 @@ export class HomeComponent implements OnInit {
 
     this.isSuperAdmin = userRole === 'SUPERADMIN';
     this.isAdmin = userRole === 'ADMIN';
+    this.isTrainer = userRole === 'TRAINER';
+    this.isStudent = userRole === 'STUDENT';
   }
 }
