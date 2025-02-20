@@ -44,8 +44,9 @@
             <input type="text" class="form-control mb-2" placeholder="Prénom" [(ngModel)]="newTrainer.userInfo.firstname" name="firstname" required>
             <input type="text" class="form-control mb-2" placeholder="Nom" [(ngModel)]="newTrainer.userInfo.lastname" name="lastname" required>
             <input type="text" class="form-control mb-2" placeholder="Téléphone" [(ngModel)]="newTrainer.userInfo.phone" name="phone" required>
+            <label for="birthdate">Date de naissance :</label>
             <input type="date" class="form-control mb-2" [(ngModel)]="newTrainer.userInfo.birthdate" name="birthdate" required>
-            <button type="submit" class="btn btn-accent text-light">Créer</button>
+            <button id="birthdate" type="submit" class="btn btn-accent text-light">Créer</button>
             <button type="button" class="btn btn-danger ms-2" (click)="isCreating = false">Annuler</button>
           </form>
         </div>

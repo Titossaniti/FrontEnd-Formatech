@@ -59,11 +59,18 @@ export class StudentComponent implements OnInit {
 
   loadStudents(): void {
     if (this.selectedSessionId) {
-      this.studentService.getStudents(this.selectedSessionId).subscribe(data => {
-        this.students = data;
+      this.studentService.getStudents(this.selectedSessionId).subscribe({
+        next: (data) => {
+          this.students = data || [];
+        },
+        error: (error) => {
+          console.error('Erreur lors du chargement des étudiants', error);
+          this.students = [];
+        }
       });
     }
   }
+
 
   openCreateModal(): void {
     this.isCreating = true;

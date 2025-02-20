@@ -66,11 +66,17 @@ export class SessionComponent implements OnInit {
   }
 
   loadSessions(): void {
-    this.sessionService.getSessions().subscribe(data => {
-      this.sessions = data;
+    this.sessionService.getSessions().subscribe({
+      next: (data) => {
+        this.sessions = data || [];
+      },
+      error: (error) => {
+        console.error('Erreur lors du chargement des sessions', error);
+        this.sessions = [];
+      }
     });
-    console.log("Liste des sessions :", this.sessions);
   }
+
 
   openCreateModal(): void {
     this.isCreating = true;
